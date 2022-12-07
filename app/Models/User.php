@@ -17,10 +17,35 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    protected $appends = ['full_name'];
     protected $fillable = [
-        'name',
         'email',
         'password',
+        'role',
+        'last_name',
+        'first_name',
+        'middle_name',
+        'address',
+        'birthday',
+        'gender',
+        'religion',
+        'civil_status',
+        'educational_attainment',
+        'contact_no',
+        'enrolled',
+        'employment_status',
+        'solo_parent',
+        'pwd',
+        'disability',
+        'lgbtq',
+        'youth_member',
+        'youth_org',
+        'emergency_contact_name',
+        'emergency_contact_address',
+        'emergency_contact_no',
+        'emergency_contact_relationship',
+
     ];
 
     /**
@@ -41,4 +66,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getFullNameAttribute() // notice that the attribute name is in CamelCase.
+    {
+        return $this->last_name . ' ' . $this->first_name . ' ' . $this->middle_name;
+    }
 }
