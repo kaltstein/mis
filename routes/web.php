@@ -36,3 +36,6 @@ Route::get('/user/list', [\App\Http\Controllers\UserController::class, 'list'])-
 Route::get('/events', [\App\Http\Controllers\EventController::class, 'index'])->name('event');
 Route::get('/event/new', [\App\Http\Controllers\EventController::class, 'new'])->name('event.new');
 Route::get('/events/list', [\App\Http\Controllers\EventController::class, 'list'])->name('event.list');
+Route::post('/events/create', [\App\Http\Controllers\EventController::class, 'create'])->name('event.create');
+Route::get('/events/details/{id}', [\App\Http\Controllers\EventController::class, 'show'])->name('event.details');
+Route::post('/events/update', [\App\Http\Controllers\EventController::class, 'update'])->name('event.update');

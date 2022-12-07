@@ -19,7 +19,7 @@
             <!-- Modal toggle -->
             <a href="{{ route('event.new') }}"
                 class="m-3 float-right block text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-                type="button" data-modal-toggle="defaultModal">
+                type="button">
                 <i class="fa-solid fa-calendar-plus"></i> CREATE EVENT
             </a>
 
@@ -73,13 +73,23 @@
                         data: 'address',
                         title: 'ADDRESS',
                     },
-
                     {
-                        data: 'full_date',
-                        title: 'DATE',
-                        className: 'text-right',
+                        data: null,
+                        title: 'DATE SCHEDULED',
+                        render: function(data, type) {
 
+                            if (data != null) {
+                                return '<span class="font-bold">' + moment(data.from).format(
+                                        'MMM DD, YYYY h:mm A') + ' - ' +
+                                    moment(data.to).format('MMM DD, YYYY h:mm A'); + '</span>'
+                            } else {
+                                return "";
+                            }
+
+                        }
                     },
+
+
 
                     {
                         data: 'created_at',

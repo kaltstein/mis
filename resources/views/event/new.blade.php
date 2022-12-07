@@ -40,7 +40,7 @@
                             </div>
                         @endif
 
-                        <form class="w-full px-6 py-3 " method="POST" action="{{ route('register') }}">
+                        <form class="w-full px-6 py-3 " method="POST" action="{{ route('event.create') }}">
                             @csrf
                             <div class="grid gap-6 mb-6 md:grid-cols-1">
                                 <div>
@@ -86,14 +86,14 @@
 
                                     <input id="date_schedule"
                                         class="cursor-pointer  md:w-1/4 sm:w-full text-gray-900 bg-gray-50 border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        type="text" name="datetimes" />
+                                        type="text" name="date_schedule" />
 
                                 </div>
 
                                 <div>
                                     <label for="remarks"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Remarks
-                                        <span class="text-red-500">*</span></label>
+                                    </label>
                                     <textarea rows="4" type="text" id="remarks" name="remarks" value="{{ old('remarks') }}"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="Additional Information"></textarea>
@@ -122,8 +122,8 @@
 
             $('#date_schedule').daterangepicker({
                 timePicker: true,
-                startDate: moment().startOf('hour'),
-                endDate: moment().startOf('hour').add(32, 'hour'),
+                startDate: moment(),
+                endDate: moment(),
                 locale: {
                     format: 'MMM DD, YYYY hh:mm A'
                 }

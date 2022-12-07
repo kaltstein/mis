@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="bg-blue-800">
+    <div class="">
         <main class="sm:container sm:mx-auto p-5 ">
             <div class="flex">
                 <div class="w-full">
