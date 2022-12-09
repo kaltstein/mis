@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+
+    <head>
+        <link rel="stylesheet" href="{{ asset('summernote-0.8.18/summernote-lite.min.css') }}">
+        <script src="{{ asset('summernote-0.8.18/summernote-lite.min.js') }}"></script>
+    </head>
     <div class="bg-gray-100">
         <main class="sm:container sm:mx-auto p-5 ">
             <div class="flex">
@@ -94,6 +99,38 @@
                                 </div>
 
                                 <div>
+                                    <label for="content"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Post
+                                        Description <span class="text-red-500">*</span></label>
+                                    <textarea id="content" rows="4" name="content"
+                                        class=" block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 "
+                                        placeholder="Your content...">{{ $event_details->content }}</textarea required>
+                                </div>
+
+                                <div>
+                                    <label for="content"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Is this featured?
+                                     <span class="text-red-500">*</span></label>
+                                    <label class="inline-flex relative items-center mb-4 cursor-pointer">
+                                        <input type="checkbox" value="1" class="sr-only peer" name="featured"  {{ $event_details->featured == '1' ? 'checked' : '' }}>
+                                        <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                     
+                                      </label>
+                                </div>
+                               
+
+                                <div>
+                                    <label for="content"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Publish?
+                                     <span class="text-red-500">*</span></label>
+                                    <label class="inline-flex relative items-center mb-4 cursor-pointer">
+                                        <input type="checkbox" value="1" class="sr-only peer" name="status" {{ $event_details->status == '1' ? 'checked' : '' }}>
+                                        <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                     
+                                      </label>
+                                </div>
+
+                                <div>
                                     <label for="remarks"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Remarks
                                     </label>
@@ -133,6 +170,28 @@
                 locale: {
                     format: 'MMM DD, YYYY hh:mm A'
                 }
+            });
+
+
+            $('#content').summernote({
+                placeholder: 'Post content here.',
+                tabsize: 2,
+                height: 600,
+                dialogsInBody: true,
+
+                toolbar: [
+                    //FONTS
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph', 'style']],
+                    ['height', ['height']],
+                    //INSERTS
+                    ['insert', ['link', 'picture', 'video', 'table', 'hr']],
+                    ['view', ['codeview', 'help']],
+                ]
+
             });
 
 

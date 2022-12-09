@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class HomeController extends Controller
 {
@@ -11,10 +13,7 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
 
     /**
      * Show the application dashboard.
@@ -23,6 +22,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $featureds = Event::limit(1)->where('status', 1)->where('featured', 1)->whereDate('from', '>=', now())->orderBy('from', 'ASC')->get();
+
+        $most_recents = Event::limit(6)->where('status', 1)->whereDate('from', '>=', now())->orderBy('from', 'ASC')->get();
+
+        return view('home', compact(['most_recents', 'featureds']));
     }
 }

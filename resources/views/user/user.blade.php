@@ -27,7 +27,9 @@
     </main>
     <script>
         $(document).ready(function() {
+            $('.user-nav').removeClass('text-gray-700');
             $('.user-nav').addClass('text-blue-500');
+
             var users_tbl = $('#users_tbl').DataTable({
 
                 scrollX: true,
@@ -43,14 +45,18 @@
                 columns: [{
                         data: 'id',
                         title: 'ID',
-
+                        className: 'dt-right',
 
                     },
 
                     {
                         data: 'full_name',
-                        title: 'FULL NAME'
+                        title: 'FULL NAME',
+                        render: function(data, type) {
 
+                            return '<span class="text-gray-700 font-bold">' + data + '</span>';
+
+                        }
 
                     },
                     {
@@ -85,7 +91,7 @@
                     {
                         data: 'created_at',
                         title: 'CREATED AT',
-                        className: 'text-right',
+                        className: 'dt-right',
                         render: function(data, type) {
 
                             if (data != null) {
@@ -95,6 +101,11 @@
                             }
 
                         }
+                    },
+                    {
+                        data: 'edit',
+                        title: 'ACTION',
+                        className: 'dt-right',
                     },
 
                 ],

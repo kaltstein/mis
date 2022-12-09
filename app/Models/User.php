@@ -69,6 +69,6 @@ class User extends Authenticatable
 
     public function getFullNameAttribute() // notice that the attribute name is in CamelCase.
     {
-        return $this->last_name . ' ' . $this->first_name . ' ' . $this->middle_name;
+        return $this->last_name . ', ' . $this->first_name . ' ' . $this->middle_name;
     }
 }

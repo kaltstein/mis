@@ -15,6 +15,9 @@ class Event extends Model
         'to',
         'venue',
         'address',
+        'content',
+        'featured',
+        'status',
         'remarks',
 
 

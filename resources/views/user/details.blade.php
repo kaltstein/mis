@@ -600,6 +600,8 @@
     </div>
     <script>
         $(document).ready(function() {
+            $('.user-nav').removeClass('text-gray-700');
+            $('.profile-nav').removeClass('text-gray-700');
             $('.user-nav').addClass('text-blue-500');
             $('.profile-nav').addClass('text-blue-500');
         });

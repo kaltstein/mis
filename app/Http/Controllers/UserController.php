@@ -161,11 +161,11 @@ class UserController extends Controller
 
 
             return datatables()->eloquent($query)
-                ->editColumn('full_name', function (User $user) {
-                    $full_name = $user->last_name . ' ' . $user->first_name . ' ' . $user->middle_name;
-                    return '<a  class="text-blue-500 font-bold hover:underline" href="' . route('user.details', $user->id) . '" target="_blank"><i class="fa-solid fa-eye"></i> ' . $full_name . '</a>';
+                ->editColumn('edit', function (User $user) {
+
+                    return '<a  class="text-white bg-blue-500 px-2 py-1  font-bold hover:underline hover:bg-blue-700" href="' . route('user.details', $user->id) . '" target="_blank"><i class="fa-solid fa-pen"></i></a>';
                 })
-                ->rawColumns(['full_name'])
+                ->rawColumns(['edit'])
                 ->toJson();
         }
     }

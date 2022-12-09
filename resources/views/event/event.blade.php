@@ -39,6 +39,7 @@
     <script>
         $(document).ready(function() {
             $('.event-nav').addClass('text-blue-500');
+            $('.event-nav').removeClass('text-gray-700');
             var events_tbl = $('#events_tbl').DataTable({
 
                 scrollX: true,
@@ -54,14 +55,18 @@
                 columns: [{
                         data: 'id',
                         title: 'ID',
-
+                        className: 'dt-right',
 
                     },
 
                     {
                         data: 'title',
-                        title: 'TITLE'
+                        title: 'TITLE',
+                        render: function(data, type) {
 
+                            return '<span class="text-gray-700 font-bold">' + data + '</span>';
+
+                        }
 
                     },
                     {
@@ -76,6 +81,7 @@
                     {
                         data: null,
                         title: 'DATE SCHEDULED',
+                        className: 'dt-right',
                         render: function(data, type) {
 
                             if (data != null) {
@@ -88,13 +94,14 @@
 
                         }
                     },
-
-
-
+                    {
+                        data: 'status',
+                        title: 'STATUS',
+                    },
                     {
                         data: 'created_at',
                         title: 'CREATED AT',
-                        className: 'text-right',
+                        className: 'dt-right',
                         render: function(data, type) {
 
                             if (data != null) {
@@ -105,6 +112,13 @@
 
                         }
                     },
+                    {
+                        data: 'action',
+                        title: 'VIEW',
+                        className: 'dt-center',
+                    },
+
+
 
                 ],
                 "columnDefs": [{

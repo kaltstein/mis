@@ -33,12 +33,23 @@ class EventController extends Controller
         return view('event.new');
     }
 
-    public function show(Request $request)
+    public function edit(Request $request)
     {
 
         $event_details = Event::findOrFail($request->id);
 
         return view('event.details', compact(['event_details']));
+    }
+
+    public function show(Request $request)
+    {
+
+
+
+        $event_details = Event::where('id', $request->id)->where('status', 1)->firstOrFail();
+        $most_recents = Event::limit(2)->where('status', 1)->whereDate('from', '>=', now())->orderBy('from', 'ASC')->get();
+
+        return view('event.view', compact(['event_details', 'most_recents']));
     }
 
     public function create(Request $request)
@@ -48,6 +59,9 @@ class EventController extends Controller
             'title' => ['required', 'string', 'max:255'],
             'date_schedule' => ['required'],
             'address' => ['required', 'string', 'max:255'],
+            'content' => ['required'],
+            'status' => ['required', 'string', 'max:255'],
+            'featured' => ['required'],
         ]);
 
         $dateArray = explode(" - ", $request->date_schedule);
@@ -60,6 +74,9 @@ class EventController extends Controller
             'address' => strtoupper($request->address),
             'from' => date('Y/m/d H:i:s', $from),
             'to' => date('Y/m/d H:i:s', $to),
+            'content' =>  $request->content,
+            'featured' =>  $request->featured,
+            'status' =>  $request->status,
             'remarks' =>  $request->remarks,
 
         ]);
@@ -77,8 +94,11 @@ class EventController extends Controller
             'date_schedule' => ['required'],
 
             'address' => ['required', 'string', 'max:255'],
+            'content' => ['required'],
 
         ]);
+
+
 
 
         $dateArray = explode(" - ", $request->date_schedule);
@@ -89,12 +109,31 @@ class EventController extends Controller
         $event = Event::findOrFail($request->event_id);
 
 
-
+        error_log($request->status);
         $event->title = $request->title;
         $event->venue = $request->venue;
         $event->address = strtoupper($request->address);
         $event->from = date('Y/m/d H:i:s', $from);
         $event->to = date('Y/m/d H:i:s', $to);
+
+
+        if ($request->featured == 1) {
+            $event->featured = 1;
+        } else {
+            $event->featured = 0;
+        }
+
+        if ($request->status == 1) {
+            $event->status = 1;
+        } else {
+            $event->status = 0;
+        }
+
+        $event->content = $request->content;
+
+
+
+
         $event->remarks = $request->remarks;
         $event->save();
         return redirect()->back()->with('success', $event->title . ' has been edited.');
@@ -106,13 +145,26 @@ class EventController extends Controller
         if ($request->ajax()) {
             $query = Event::select('*');
 
-
             return datatables()->eloquent($query)
-                ->editColumn('title', function (Event $event) {
 
-                    return '<a  class="text-blue-500 font-bold hover:underline" href="' . route('event.details', $event->id) . '" target="_blank"><i class="fa-solid fa-eye"></i> ' . $event->title . '</a>';
+                ->editColumn('action', function (Event $event) {
+
+                    return '
+                    <div class="inline-flex rounded-md shadow-sm">
+                    <a  class="mb-2 inline-flex items-center  px-3 py-2 text-xs font-medium text-center focus:outline-none text-white bg-purple-600 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-600 dark:focus:ring-purple-900" href="' . route('event.show', $event->id) . '" target="_blank"><i class="fa-solid fa-eye"></i>&nbsp;VIEW ON SITE</a>
+                    <a  class="mb-2 inline-flex items-center  px-3 py-2 text-xs font-medium text-center text-white bg-blue-500  hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" href="' . route('event.edit', $event->id) . '" target="_blank"><i class="fa-solid fa-pen"></i></a>
+                     
+                    </div>
+                    ';
                 })
-                ->rawColumns(['title'])
+                ->editColumn('status', function (Event $event) {
+                    if ($event->status == 1) {
+                        return '<span class="font-bold text-green-500">• Published</span>';
+                    } else {
+                        return '<span class="font-bold text-gray-500">• Unpublished</span>';
+                    }
+                })
+                ->rawColumns(['action', 'status'])
 
                 ->toJson();
         }

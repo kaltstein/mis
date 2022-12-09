@@ -26,78 +26,67 @@
 <body class="bg-gray-100 h-screen antialiased leading-none font-sans">
     <div id="app">
         <header class="">
-            @if (Auth::check())
-                <nav class="px-2 py-3 bg-slate-800 border-gray-200 dark:bg-gray-900 dark:border-gray-700 shadow-md">
-                    <div class="container flex flex-wrap items-center justify-between mx-auto">
-                        <a href="#" class="flex items-center">
-                            {{-- <img src="{{ asset('images/logo.png') }}" class="h-6 mr-3 sm:h-10" alt="Flowbite Logo" /> --}}
-                            <span
-                                class="self-center text-xl font-semibold whitespace-nowrap dark:text-white text-white">Management
-                                Information
-                                System</span>
-                        </a>
-                        <button data-collapse-toggle="navbar-dropdown" type="button"
-                            class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                            aria-controls="navbar-dropdown" aria-expanded="false">
-                            <span class="sr-only">Open main menu</span>
-                            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                        </button>
-                        <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
-                            <ul
-                                class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                                <li>
-                                    <a href="{{ route('home') }}"
-                                        class="home-nav block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">HOME
 
-                                    </a>
-                                </li>
+            <nav class="px-2 py-3 bg-slate-800 border-gray-200 dark:bg-gray-900 dark:border-gray-700 shadow-md">
+                <div class="container flex flex-wrap items-center justify-between mx-auto">
+                    <a href="{{ route('home') }}" class="flex items-center">
+                        <img src="{{ asset('images/sk.png') }}" class="h-6 mr-3 sm:h-10" alt="Flowbite Logo" />
+                        <span
+                            class="self-center text-xl font-semibold whitespace-nowrap dark:text-white text-white">Youth
+                            Profiling
+                            System</span>
+                    </a>
+                    <button data-collapse-toggle="navbar-dropdown" type="button"
+                        class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                        aria-controls="navbar-dropdown" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
+                        <ul
+                            class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                            <li>
+                                <a href="{{ route('home') }}"
+                                    class="home-nav block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><i
+                                        class="fa-solid fa-house"></i> HOME
 
+                                </a>
+                            </li>
+
+                            @if (Auth::check())
                                 @if (Auth::user()->role == 'admin')
                                     <li>
                                         <a href="{{ route('user') }}"
-                                            class="user-nav block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">USERS
+                                            class="user-nav block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><i
+                                                class="fa-solid fa-users"></i> USERS
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('dashboard') }}"
+                                            class="dashboard-nav block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                                            <i class="fa-solid fa-chart-simple"></i> DASHBOARD
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('event') }}"
+                                            class="event-nav block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                                            <i class="fa-solid fa-calendar-days"></i> EVENTS
                                         </a>
                                     </li>
                                 @else
                                     <li>
                                         <a href="{{ route('user.profile') }}"
-                                            class="profile-nav block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">MY
+                                            class="profile-nav block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><i
+                                                class="fa-solid fa-user-gear"></i> MY
                                             PROFILE
                                         </a>
                                     </li>
                                 @endif
-                                <li>
-                                    <a href="{{ route('event') }}"
-                                        class="event-nav block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                                        EVENTS
-                                    </a>
-                                </li>
-                                {{-- <li>
-                                    <a href="{{ route('hardware') }}"
-                                        class="hardware-nav block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">HARDWARES
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('software') }}"
-                                        class="software-nav block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">SOFTWARES
-                                    </a>
-                                </li> --}}
-
-                                {{-- <li class=" text-red-700">
-                                    <a href="{{ route('logout') }}"
-                                        class=" logout-nav block py-2 pl-3 pr-4  rounded hover:font-bold hover:bg-gray-100 md:hover:bg-transparent md:border-0  md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                                        onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();"><i
-                                            class="fa-solid fa-power-off"></i> {{ __('LOGOUT') }}</a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li> --}}
                                 <li>
                                     <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
                                         class="flex items-center justify-between w-full py-2 pl-3 pr-4 font-medium text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-gray-400 dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"><i
@@ -109,6 +98,7 @@
                                                 clip-rule="evenodd"></path>
                                         </svg></button>
                                     <!-- Dropdown menu -->
+
                                     <div id="dropdownNavbar"
                                         class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded shadow w-60 dark:bg-gray-700 dark:divide-gray-600">
                                         <ul class="py-1 text-sm text-gray-700 dark:text-gray-400"
@@ -162,14 +152,23 @@
                                             </form>
                                         </div>
                                     </div>
+
                                 </li>
+                            @else
+                                <li>
+                                    <a href="{{ route('event') }}"
+                                        class="event-nav block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                                        <i class="fa-solid fa-right-to-bracket"></i> LOGIN
+                                    </a>
+                                </li>
+                            @endif
 
 
-                            </ul>
-                        </div>
+                        </ul>
                     </div>
-                </nav>
-            @endif
+                </div>
+            </nav>
+
         </header>
 
         @yield('content')

@@ -20,6 +20,9 @@ return new class extends Migration
             $table->dateTime('to');
             $table->string('venue');
             $table->string('address');
+            $table->longText('content');
+            $table->string('featured');
+            $table->longText('status');
             $table->text('remarks');
             $table->timestamps();
         });
