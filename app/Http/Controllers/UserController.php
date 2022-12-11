@@ -130,6 +130,7 @@ class UserController extends Controller
         $user->employment_status = strtoupper($request->employment_status);
         $user->solo_parent = $request->solo_parent;
         $user->pwd = $request->pwd;
+        $user->lgbtq = $request->lgbtq;
         $user->disability = strtoupper($request->disability);
         $user->youth_member = $request->youth_member;
         $user->youth_org = strtoupper($request->youth_org);

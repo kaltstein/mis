@@ -61,12 +61,6 @@
                             @if (Auth::check())
                                 @if (Auth::user()->role == 'admin')
                                     <li>
-                                        <a href="{{ route('user') }}"
-                                            class="user-nav block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><i
-                                                class="fa-solid fa-users"></i> USERS
-                                        </a>
-                                    </li>
-                                    <li>
                                         <a href="{{ route('dashboard') }}"
                                             class="dashboard-nav block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                                             <i class="fa-solid fa-chart-simple"></i> DASHBOARD
@@ -76,6 +70,18 @@
                                         <a href="{{ route('event') }}"
                                             class="event-nav block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
                                             <i class="fa-solid fa-calendar-days"></i> EVENTS
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('user') }}"
+                                            class="user-nav block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><i
+                                                class="fa-solid fa-users"></i> USERS
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('about_us') }}"
+                                            class="about_us-nav block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                                            <i class="fa-solid fa-address-card"></i> ABOUT US
                                         </a>
                                     </li>
                                 @else
@@ -155,6 +161,12 @@
 
                                 </li>
                             @else
+                                <li>
+                                    <a href="{{ route('about_us') }}"
+                                        class="about_us-nav block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                                        <i class="fa-solid fa-address-card"></i> ABOUT US
+                                    </a>
+                                </li>
                                 <li>
                                     <a href="{{ route('event') }}"
                                         class="event-nav block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">

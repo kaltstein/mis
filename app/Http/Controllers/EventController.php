@@ -60,9 +60,20 @@ class EventController extends Controller
             'date_schedule' => ['required'],
             'address' => ['required', 'string', 'max:255'],
             'content' => ['required'],
-            'status' => ['required', 'string', 'max:255'],
-            'featured' => ['required'],
+
         ]);
+
+        if ($request->featured == 1) {
+            $request->featured = 1;
+        } else {
+            $request->featured = 0;
+        }
+
+        if ($request->status == 1) {
+            $request->status = 1;
+        } else {
+            $request->status = 0;
+        }
 
         $dateArray = explode(" - ", $request->date_schedule);
         $from = strtotime($dateArray[0]);

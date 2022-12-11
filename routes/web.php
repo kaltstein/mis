@@ -44,3 +44,7 @@ Route::post('/events/update', [\App\Http\Controllers\EventController::class, 'up
 
 // DASHBOARD
 Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->middleware('role:admin')->name('dashboard');
+
+
+// ABOUT US
+Route::get('/aboutus', [\App\Http\Controllers\AboutUSController::class, 'index'])->name('about_us');
