@@ -79,6 +79,9 @@ class EventController extends Controller
         $from = strtotime($dateArray[0]);
         $to = strtotime($dateArray[1]);
 
+        if ($request->remarks == "") {
+            $request->remarks = "/";
+        }
         Event::create([
             'title' => $request->title,
             'venue' => $request->venue,
@@ -144,7 +147,9 @@ class EventController extends Controller
 
 
 
-
+        if ($request->remarks == "") {
+            $request->remarks = "/";
+        }
         $event->remarks = $request->remarks;
         $event->save();
         return redirect()->back()->with('success', $event->title . ' has been edited.');

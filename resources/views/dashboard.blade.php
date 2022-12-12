@@ -49,9 +49,9 @@
 
 
     </main>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"
-        integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+
     <script>
         $(document).ready(function() {
             $('.dashboard-nav').removeClass('text-gray-700');
@@ -60,7 +60,10 @@
 
             const gender_canvas = document.getElementById('gender');
             const gender_labels = ['Male', 'Female'];
-            const gender_data = [$('#male_count').val(), $('#female_count').val()];
+            const gender_data = [
+                parseInt($('#male_count').val()),
+                parseInt($('#female_count').val())
+            ];
             const gender_bg_color = [
                 'rgb(52, 134, 235)',
                 'rgb(255, 77, 237)',
@@ -72,10 +75,10 @@
             const civil_status_canvas = document.getElementById('civil_status');
             const civil_status_labels = ['Single', 'Married', 'Live In', 'Other'];
             const civil_status_data = [
-                $('#single_count').val(),
-                $('#married_count').val(),
-                $('#live_in_count').val(),
-                $('#civil_status_other_count').val()
+                parseInt($('#single_count').val()),
+                parseInt($('#married_count').val()),
+                parseInt($('#live_in_count').val()),
+                parseInt($('#civil_status_other_count').val())
             ];
             const civil_status_bg_color = [
                 'rgb(12, 127, 166)',
@@ -91,8 +94,8 @@
             const enrolled_canvas = document.getElementById('enrolled');
             const enrolled_labels = ['YES', 'NO'];
             const enrolled_data = [
-                $('#enrolled_count').val(),
-                $('#not_enrolled_count').val(),
+                parseInt($('#enrolled_count').val()),
+                parseInt($('#not_enrolled_count').val()),
 
             ];
             const enrolled_bg_color = [
@@ -107,8 +110,8 @@
             const solo_parent_canvas = document.getElementById('solo_parent');
             const solo_parent_labels = ['YES', 'NO'];
             const solo_parent_data = [
-                $('#solo_parent_count').val(),
-                $('#not_solo_parent_count').val(),
+                parseInt($('#solo_parent_count').val()),
+                parseInt($('#not_solo_parent_count').val()),
 
             ];
             const solo_parent_bg_color = [
@@ -124,8 +127,8 @@
             const pwd_canvas = document.getElementById('pwd');
             const pwd_labels = ['YES', 'NO'];
             const pwd_data = [
-                $('#pwd_count').val(),
-                $('#not_pwd_count').val(),
+                parseInt($('#pwd_count').val()),
+                parseInt($('#not_pwd_count').val()),
 
             ];
             const pwd_bg_color = [
@@ -138,11 +141,12 @@
                 'PWD');
 
             //LGBTQ
+
             const lgbtq_canvas = document.getElementById('lgbtq');
             const lgbtq_labels = ['YES', 'NO'];
             const lgbtq_data = [
-                $('#lgbtq_count').val(),
-                $('#not_lgbtq_count').val(),
+                parseInt($('#lgbtq_count').val()),
+                parseInt($('#not_lgbtq_count').val()),
 
             ];
             const lgbtq_bg_color = [
@@ -155,32 +159,56 @@
                 'LGBTQ+');
 
             function pieChart(canvas, chart_labels, chart_data, chart_bg_color, chart_title) {
-                const data = {
-                    labels: chart_labels,
-                    datasets: [{
-                        label: '',
-                        data: chart_data,
-                        backgroundColor: chart_bg_color,
-                        hoverOffset: 4
-                    }]
-                };
+
                 const config = {
                     type: 'pie',
-                    data: data,
+                    data: {
+                        labels: chart_labels,
+                        datasets: [{
+                            label: '',
+                            data: chart_data,
+                            backgroundColor: chart_bg_color,
+
+                        }]
+                    },
                     options: {
                         responsive: true,
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: chart_title,
+                        },
                         plugins: {
-                            legend: {
-                                position: 'top',
-                            },
-                            title: {
-                                display: true,
-                                text: chart_title,
-                            }
-                        }
-                    }
-                };
 
+                            datalabels: {
+                                formatter: (value, canvas) => {
+
+                                    let sum = 0;
+                                    let dataArr = canvas.chart.data.datasets[0].data;
+                                    dataArr.map(data => {
+                                        sum += data;
+                                    });
+                                    let percentage = (value * 100 / sum).toFixed(2) + "%";
+
+
+                                    if (value != 0) {
+                                        return percentage;
+
+                                    }
+
+
+
+                                },
+                                color: '#fff',
+                            }
+
+
+                        },
+
+                    }
+                }
                 const gender = new Chart(
                     canvas,
                     config

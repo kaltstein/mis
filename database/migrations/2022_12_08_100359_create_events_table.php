@@ -23,7 +23,7 @@ return new class extends Migration
             $table->longText('content');
             $table->string('featured');
             $table->longText('status');
-            $table->text('remarks');
+            $table->text('remarks')->nullable();
             $table->timestamps();
         });
     }
