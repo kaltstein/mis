@@ -38,7 +38,7 @@ Route::get('/event/new', [\App\Http\Controllers\EventController::class, 'new'])-
 Route::get('/events/list', [\App\Http\Controllers\EventController::class, 'list'])->middleware('role:admin')->name('event.list');
 Route::post('/events/create', [\App\Http\Controllers\EventController::class, 'create'])->middleware('role:admin')->name('event.create');
 Route::get('/events/edit/{id}', [\App\Http\Controllers\EventController::class, 'edit'])->middleware('role:admin')->name('event.edit');
-Route::get('/events/view/{id}', [\App\Http\Controllers\EventController::class, 'show'])->middleware('role:admin')->name('event.show');
+Route::get('/events/view/{id}', [\App\Http\Controllers\EventController::class, 'show'])->name('event.show');
 Route::post('/events/update', [\App\Http\Controllers\EventController::class, 'update'])->middleware('role:admin')->name('event.update');
 
 
